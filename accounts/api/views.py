@@ -44,7 +44,8 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class AccountViewSet(viewsets.ViewSet):
-
+    permission_classes = (AllowAny,)
+    serializer_class = SignupSerializer
     @action(methods=['POST'], detail=False)
     def signup(self, request):
         """
@@ -70,7 +71,7 @@ class AccountViewSet(viewsets.ViewSet):
         user = serializer.save()
 
         # Create UserProfile object
-        user.profile
+
 
         django_login(request, user)
         return Response({
